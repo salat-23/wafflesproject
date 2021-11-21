@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="logo.png" sizes="48x48" type="image/x-icon"> <!-- add favicon -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="media.css">
+    <title>Anime videos</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <img src="logo.png" alt="LOGO" class="header__logo">
+            <div class="container">
+                <div class="header__content">
+                  <nav>
+                        <ul>
+                            <li><a href="/">Главная</a></li>
+                            <li><a href="#">Донаты</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <main>
+            <div class="container">
+                <div class="search">
+                    <input type="text" id="searchField" placeholder="Искать здесь...">
+                    <button id="searchButton"></button>
+                </div>
+                <div class="videos">
+                    <div class="videos__inner" id="videos_container">
+
+                    </div>
+                    <div class="pagination">
+                        <ul>
+                            <li><button id="button_left"><i class="fa fa-arrow-left" aria-hidden="true"></i></button></li>
+                            <li><span id="page_number">1</span></li>
+                            <li><button id="button_right"><i class="fa fa-arrow-right" aria-hidden="true"></i></button></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer>
+        </footer>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> <!-- JQUERY -->
+    <script src="index.js"></script>
+</body>
+
+</html>

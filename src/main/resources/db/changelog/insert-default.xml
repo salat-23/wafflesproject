@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+    <changeSet author="salat23" id="insert_into_series">
+        <!--<insert tableName="episodes">
+            <column name="series" value="1"/>
+            <column name="video_id" value="2609331"/>
+        </insert>-->
+
+
+
+        <insert tableName="series">
+            <!--<column name="id" value="1"/>-->
+            <column name="name" value="Pokemon"/>
+            <column name="episode_count" value="733"/>
+            <column name="latest_update" valueDate="now()"/>
+            <column name="cover" value="https://res.cloudinary.com/salat23/image/upload/v1636957157/pokemon_bktvzj.jpg"/>
+            <column name="description" value="This is a description of a series called pokemon this series is awesome i love it so much bro this is literally so good"/>
+            <column name="studio" value="niantic"/>
+            <column name="director" value="ash ketchum"/>
+        </insert>
+
+        <insert tableName="episodes">
+            <column name="title" value="Pokemon is awesome"/>
+            <column name="series_id" value="1"/>
+            <column name="url" value="https://video.sibnet.ru/shell.php?videoid=1534405"/>
+            <column name="number" value="1"/>
+        </insert>
+
+        <insert tableName="episodes">
+            <column name="title" value="Pokemon is awesome 2"/>
+            <column name="series_id" value="1"/>
+            <column name="url" value="https://video.sibnet.ru/shell.php?videoid=1534406"/>
+            <column name="number" value="2"/>
+        </insert>
+
+        <insert tableName="episodes">
+            <column name="title" value="Pokemon is awesome 3"/>
+            <column name="series_id" value="1"/>
+            <column name="url" value="https://video.sibnet.ru/shell.php?videoid=1534407"/>
+            <column name="number" value="3"/>
+        </insert>
+
+
+        <insert tableName="series">
+            <!--<column name="id" value="2"/>-->
+            <column name="name" value="ReLife"/>
+            <column name="episode_count" value="12"/>
+            <column name="latest_update" valueDate="now()"/>
+            <column name="cover" value="https://res.cloudinary.com/salat23/image/upload/v1636888816/fzwl54znuq7cbxtlwuwj.jpg"/>
+        </insert>
+        <insert tableName="series">
+            <!--<column name="id" value="3"/>-->
+            <column name="name" value="GGGG"/>
+            <column name="episode_count" value="180"/>
+            <column name="latest_update" valueDate="now()"/>
+            <column name="cover" value="https://res.cloudinary.com/salat23/image/upload/v1636957287/%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B6%D0%B5%D0%BD%D0%BE_u8o7kh.jpg"/>
+        </insert>
+        <insert tableName="series">
+            <!--<column name="id" value="3"/>-->
+            <column name="name" value="SHSH"/>
+            <column name="episode_count" value="180"/>
+            <column name="latest_update" valueDate="now()"/>
+            <column name="cover" value="https://res.cloudinary.com/salat23/image/upload/v1636957287/%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B6%D0%B5%D0%BD%D0%BE_u8o7kh.jpg"/>
+        </insert>
+        <insert tableName="series">
+            <!--<column name="id" value="3"/>-->
+            <column name="name" value="WEHSFHDFHD"/>
+            <column name="episode_count" value="180"/>
+            <column name="latest_update" valueDate="now()"/>
+            <column name="cover" value="https://res.cloudinary.com/salat23/image/upload/v1636957287/%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B6%D0%B5%D0%BD%D0%BE_u8o7kh.jpg"/>
+        </insert>
+        <insert tableName="series">
+            <!--<column name="id" value="3"/>-->
+            <column name="name" value="WWEYDFHSDDFSEt"/>
+            <column name="episode_count" value="180"/>
+            <column name="latest_update" valueDate="now()"/>
+            <column name="cover" value="https://res.cloudinary.com/salat23/image/upload/v1636957287/%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B6%D0%B5%D0%BD%D0%BE_u8o7kh.jpg"/>
+        </insert>
+        <insert tableName="series">
+            <!--<column name="id" value="3"/>-->
+            <column name="name" value="SDGSDVSDVsvds"/>
+            <column name="episode_count" value="180"/>
+            <column name="latest_update" valueDate="now()"/>
+            <column name="cover" value="https://res.cloudinary.com/salat23/image/upload/v1636957287/%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B6%D0%B5%D0%BD%D0%BE_u8o7kh.jpg"/>
+        </insert>
+        <insert tableName="series">
+            <!--<column name="id" value="3"/>-->
+            <column name="name" value="AXVSDVSDVs"/>
+            <column name="episode_count" value="180"/>
+            <column name="latest_update" valueDate="now()"/>
+            <column name="cover" value="https://res.cloudinary.com/salat23/image/upload/v1636957287/%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B6%D0%B5%D0%BD%D0%BE_u8o7kh.jpg"/>
+        </insert>
+        <insert tableName="series">
+            <!--<column name="id" value="3"/>-->
+            <column name="name" value="AAAAAAAAAA"/>
+            <column name="episode_count" value="180"/>
+            <column name="latest_update" valueDate="now()"/>
+            <column name="cover" value="https://res.cloudinary.com/salat23/image/upload/v1636957287/%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B6%D0%B5%D0%BD%D0%BE_u8o7kh.jpg"/>
+        </insert>
+        <insert tableName="series">
+            <!--<column name="id" value="3"/>-->
+            <column name="name" value="SSSSSSSSSS"/>
+            <column name="episode_count" value="180"/>
+            <column name="latest_update" valueDate="now()"/>
+            <column name="cover" value="https://res.cloudinary.com/salat23/image/upload/v1636957287/%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B6%D0%B5%D0%BD%D0%BE_u8o7kh.jpg"/>
+        </insert>
+        <insert tableName="series">
+            <!--<column name="id" value="3"/>-->
+            <column name="name" value="DDDDDDDDDDDDDD"/>
+            <column name="episode_count" value="180"/>
+            <column name="latest_update" valueDate="now()"/>
+            <column name="cover" value="https://res.cloudinary.com/salat23/image/upload/v1636957287/%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B6%D0%B5%D0%BD%D0%BE_u8o7kh.jpg"/>
+        </insert>
+        <insert tableName="series">
+            <!--<column name="id" value="3"/>-->
+            <column name="name" value="CCCCCCCCCCCC"/>
+            <column name="episode_count" value="180"/>
+            <column name="latest_update" valueDate="now()"/>
+            <column name="cover" value="https://res.cloudinary.com/salat23/image/upload/v1636957287/%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B6%D0%B5%D0%BD%D0%BE_u8o7kh.jpg"/>
+        </insert>
+        <insert tableName="series">
+            <!--<column name="id" value="3"/>-->
+            <column name="name" value="BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"/>
+            <column name="episode_count" value="180"/>
+            <column name="latest_update" valueDate="now()"/>
+            <column name="cover" value="https://res.cloudinary.com/salat23/image/upload/v1636957287/%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B6%D0%B5%D0%BD%D0%BE_u8o7kh.jpg"/>
+        </insert>
+
+        <insert tableName="genre">
+            <column name="genre_title" value="этти"/>
+            <column name="series_id" value="1"/>
+        </insert>
+
+        <insert tableName="genre">
+            <column name="genre_title" value="экшн"/>
+            <column name="series_id" value="1"/>
+        </insert>
+
+        <insert tableName="genre">
+            <column name="genre_title" value="драма"/>
+            <column name="series_id" value="1"/>
+        </insert>
+
+
+
+    </changeSet>
+</databaseChangeLog>

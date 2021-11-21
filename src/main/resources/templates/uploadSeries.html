@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload</title>
+</head>
+<body>
+    <input id="title" type="text" placeholder="Название тайтла (Точь в точь)">
+    <input id="genres" type="text" placeholder="Жанры (через пробел, все с маленькой буквы)">
+    <input id="release" type="text" placeholder="год выхода (например: 2016)">
+    <input id="director" type="text" placeholder="Режисер">
+    <input id="studio" type="text" placeholder="Студия">
+    <input id="description" type="text" placeholder="Описание">
+    <input id="code" type="password" placeholder="Пароль">
+
+    <!--<input type="text" placeholder="url обложки (если выложено на другом хостинге)">-->
+    <input id="fileChooser" type="file" placeholder="Обложка (не загружайте если указали url)">
+    <input type="checkbox">
+    <button id="go">ОКЕЙ ЛЕТСГОУ</button>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        var buttonGo = document.getElementById("go");
+        var fileChooser = document.getElementById("fileChooser");
+        var genresField = document.getElementById("genres");
+        var titleField = document.getElementById("title");
+        var releaseField = document.getElementById("release");
+        var directorField = document.getElementById("director");
+        var descriptionField = document.getElementById("description");
+        var studioField = document.getElementById("studio");
+        var codeField = document.getElementById("code");
+
+        buttonGo.onclick = () => {uploadNewSeries()};
+        function uploadNewSeries() {
+            /*dataS.append("cover", fileChooser.files[0]);*/
+
+            const dataS = {
+            "title": titleField.value,
+            "description": descriptionField.value,
+            "genres": genresField.value.split(" "),
+            "releaseDate": releaseField.value,
+            "director": directorField.value,
+            "studio": studioField.value,
+            "code": codeField.value
+            }
+
+            const jsonData = JSON.stringify(dataS);
+            console.log(dataS);
+            /*$.ajax({
+                type: "POST",
+                cache: false,
+                processData: false,
+                contentType: false,
+                data: dataS,
+                url: "/series/upload",
+                success: function (data) {
+                    console.log("OK");
+                },
+                error: function (data) {
+                },
+            });*/
+            $.ajax({
+                url: "/series/upload",
+                type: "POST",
+                contentType: 'application/json',
+                dataType: 'json',
+                data: jsonData,
+                success: function (response) {
+                    console.log(response)
+                },
+                error: function (jqXHR, textStatus, errorMessage) {
+                    console.log(errorMessage);
+                }
+            });
+
+            var form = fileChooser.files[0];
+            var data = new FormData();
+            data.append("file", form);
+
+            $.ajax({
+                type: "POST",
+                enctype: 'multipart/form-data',
+                url: "/series/upload/image?name="+titleField.value,
+                data: data,
+                processData: false,
+                contentType: false,
+                cache: false,
+                timeout: 600000,
+                success: function (data) {
+                },
+                error: function (e) {
+                }
+            });
+        }
+    </script>
+</body>
+</html>
