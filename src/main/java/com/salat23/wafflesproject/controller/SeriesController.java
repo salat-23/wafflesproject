@@ -61,7 +61,15 @@ public class SeriesController {
         return modelAndView;
     }
 
-    @GetMapping("/series/{name}/get")
+    @RequestMapping("/admin/qwerty/edit/{name}")
+    public ModelAndView getAdminEditSeries(@PathVariable String name) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("edit");
+        return modelAndView;
+    }
+
+
+    @GetMapping({"/series/{name}/get", "/admin/qwerty/edit/{name}/get"})
     public SeriesDTO getEpisodes(@PathVariable String name) {
         return seriesService.getSeriesInfo(name);
     }

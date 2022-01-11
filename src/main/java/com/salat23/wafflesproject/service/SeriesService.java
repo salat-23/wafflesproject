@@ -27,7 +27,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -102,11 +101,10 @@ public class SeriesService {
         return "OK";
     }
 
-    public Model formSeriesPage(String name, Model model) {
+    public void formSeriesPage(String name, Model model) {
         Optional<Series> optSeries = seriesRepository.findByName(name);
         if (optSeries.isPresent()) model.addAttribute("series", optSeries.get());
         else throw new EntityNotFoundException();
-        return model;
     }
 
     public SeriesDTO getSeriesInfo(String name) {

@@ -30,7 +30,7 @@
     transition: all 0.3s;
     font-family: 'Open Sans', sans-serif;
     font-weight: normal;
-    border-radius: 10px;
+    /*border-radius: 10px;*/
 }
 
 body,
@@ -360,4 +360,9 @@ main {
 
 footer {
     height: 50px;
+}
+
+.meta_info input {
+    color: var(--main-font-color);
+    font-size: 24px;
 }

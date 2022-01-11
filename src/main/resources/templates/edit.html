@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../logo.png" sizes="48x48" type="image/x-icon"> <!-- add favicon -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="../../../index.css">
+    <link rel="stylesheet" href="../../../media.css">
+</head>
+<body>
+<div class="wrapper">
+    <header>
+        <img src="../logo.png" alt="LOGO" class="header__logo">
+        <div class="container">
+            <div class="header__content">
+                <nav>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="#">Донаты</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="info">
+                <img id="poster" class="poster" src="https://cdn.europosters.eu/image/750/posters/re-zero-key-art-i46586.jpg">
+                <div class="title_discription_container">
+                    <h2 id="title" >Что то самое то название</h2>
+                    <div class="description_meta_container">
+                        <div class="description">
+                            <p id="description">Ipus Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Ducimus vitae at assumenda totam aliquid laboriosam similique
+                            quia nihil omnis, illo aspernatur libero adipisci a culpa, ipsam eos odio voluptate consectetur!
+                            Ipus Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Ducimus vitae at assumenda totam aliquid laboriosam similique
+                            quia nihil omnis, illo aspernatur libero adipisci a culpa, ipsam eos odio voluptate consectetur!
+                            Ipus Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Ducimus vitae at assumenda totam aliquid laboriosam similique
+                            quia nihil omnis, illo aspernatur libero adipisci a culpa, ipsam eos odio voluptate consectetur!
+                            Ipus Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Ducimus vitae at assumenda totam aliquid laboriosam similique
+                            quia nihil omnis, illo aspernatur libero adipisci a culpa, ipsam eos odio voluptate consectetur!
+                            Ipus Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Ducimus vitae at assumenda totam aliquid laboriosam similique
+                            quia nihil omnis, illo aspernatur libero adipisci a culpa, ipsam eos odio voluptate consectetur!</p>
+                        </div>
+                        <div class="meta_info">
+                            <p>Жанр: <input id="genre"/></p>
+                            <p>Студия: <input id="studio"/></p>
+                            <p>Режиссер: <input id="director"/></p>
+                            <p>Дата выпуска: <input id="release_date"/></p>
+                            <p id="episode_amount"></p>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+            <div class="video_player">
+                <iframe id="video_player" src=""
+                frameborder="0" scrolling="no" allowfullscreen></iframe>
+                <div id="choser" class="episode_chooser_container">
+                    <ul id="choser_list">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+    </footer>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    var videoPlayer = document.getElementById("video_player");
+    var chooserList = document.getElementById("choser_list");
+    var cover = document.getElementById("poster");
+    var title = document.getElementById("title");
+    var description = document.getElementById("description");
+    var director = document.getElementById("director");
+    var genre = document.getElementById("genre");
+    var studio = document.getElementById("studio");
+    var releaseDate = document.getElementById("release_date");
+    var episodeAmount = document.getElementById("episode_amount");
+
+    getInfo();
+    function getInfo() {
+        var currentUrl = window.location.href;
+        $.get(currentUrl+"/get", function (data) {
+            
+            title.innerText = data.name;
+            description.innerText = data.description;
+            cover.src = data.cover;
+            releaseDate.value = data.release_date;
+            studio.value = data.studio;
+            director.value = data.director;
+            var genresString = "";
+            data.genres.forEach(genreString => {
+                genresString += genreString + " ";
+            });
+            genre.value = genresString;
+
+            var episodes = data.episodes;
+            changeEpisode(episodes[0].url);
+            chooserList.innerHTML = null;
+            episodes.forEach(episode => {
+                var liElement = document.createElement("li");
+                var buttonElement = document.createElement("button");
+                buttonElement.className = "choser_button";
+                buttonElement.innerText = episode.number;
+                buttonElement.onclick = () => {changeEpisode(episode.url)};
+                liElement.append(buttonElement);
+                liElement.onclick = () => {changeEpisode(episode.url)};
+                chooserList.append(liElement);
+            })
+
+            episodeAmount.innerText = "Количество серий: " + episodes.length;
+
+
+        });
+    }
+
+    function changeEpisode(url) {
+        videoPlayer.src = url;
+    }
+
+
+
+
+
+    var buttonGo = document.getElementById("go");
+    var fileChooser = document.getElementById("fileChooser");
+    var genresField = document.getElementById("genres");
+    var titleField = document.getElementById("title");
+    var releaseField = document.getElementById("release");
+    var directorField = document.getElementById("director");
+    var descriptionField = document.getElementById("description");
+    var studioField = document.getElementById("studio");
+    var codeField = document.getElementById("code");
+
+    buttonGo.onclick = () => {editSeries()};
+    function editSeries() {
+        /*dataS.append("cover", fileChooser.files[0]);*/
+
+        const dataS = {
+            "title": titleField.value,
+            "description": descriptionField.value,
+            "genres": genresField.value.split(" "),
+            "releaseDate": releaseField.value,
+            "director": directorField.value,
+            "studio": studioField.value,
+            "code": codeField.value
+        }
+
+        const jsonData = JSON.stringify(dataS);
+        console.log(dataS);
+        /*$.ajax({
+            type: "POST",
+            cache: false,
+            processData: false,
+            contentType: false,
+            data: dataS,
+            url: "/series/upload",
+            success: function (data) {
+                console.log("OK");
+            },
+            error: function (data) {
+            },
+        });*/
+        $.ajax({
+            url: "/series/upload",
+            type: "POST",
+            contentType: 'application/json',
+            dataType: 'json',
+            data: jsonData,
+            success: function (response) {
+                console.log(response)
+            },
+            error: function (jqXHR, textStatus, errorMessage) {
+                console.log(errorMessage);
+            }
+        });
+
+        var form = fileChooser.files[0];
+        var data = new FormData();
+        data.append("file", form);
+
+        $.ajax({
+            type: "POST",
+            enctype: 'multipart/form-data',
+            url: "/series/upload/image?name="+titleField.value,
+            data: data,
+            processData: false,
+            contentType: false,
+            cache: false,
+            timeout: 600000,
+            success: function (data) {
+            },
+            error: function (e) {
+            }
+        });
+    }
+</script>
+</body>
+</html>
