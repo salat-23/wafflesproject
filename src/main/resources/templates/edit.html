@@ -30,10 +30,10 @@
             <div class="info">
                 <img id="poster" class="poster" src="https://cdn.europosters.eu/image/750/posters/re-zero-key-art-i46586.jpg">
                 <div class="title_discription_container">
-                    <h2 id="title" >Что то самое то название</h2>
+                    <input id="title"/>
                     <div class="description_meta_container">
                         <div class="description">
-                            <p id="description">Ipus Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            <textarea id="description">Ipus Lorem ipsum dolor sit amet consectetur adipisicing elit.
                             Ducimus vitae at assumenda totam aliquid laboriosam similique
                             quia nihil omnis, illo aspernatur libero adipisci a culpa, ipsam eos odio voluptate consectetur!
                             Ipus Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -47,7 +47,7 @@
                             quia nihil omnis, illo aspernatur libero adipisci a culpa, ipsam eos odio voluptate consectetur!
                             Ipus Lorem ipsum dolor sit amet consectetur adipisicing elit.
                             Ducimus vitae at assumenda totam aliquid laboriosam similique
-                            quia nihil omnis, illo aspernatur libero adipisci a culpa, ipsam eos odio voluptate consectetur!</p>
+                            quia nihil omnis, illo aspernatur libero adipisci a culpa, ipsam eos odio voluptate consectetur!</textarea>
                         </div>
                         <div class="meta_info">
                             <p>Жанр: <input id="genre"/></p>
@@ -57,9 +57,8 @@
                             <p id="episode_amount"></p>
                         </div>
                     </div>
+                    <button id="save_button" class="save_button" type="button">Save changes</button>
                 </div>
-                
-                
             </div>
             <div class="video_player">
                 <iframe id="video_player" src=""
@@ -76,40 +75,42 @@
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-    var videoPlayer = document.getElementById("video_player");
-    var chooserList = document.getElementById("choser_list");
-    var cover = document.getElementById("poster");
-    var title = document.getElementById("title");
-    var description = document.getElementById("description");
-    var director = document.getElementById("director");
-    var genre = document.getElementById("genre");
-    var studio = document.getElementById("studio");
-    var releaseDate = document.getElementById("release_date");
-    var episodeAmount = document.getElementById("episode_amount");
+    var saveButton = document.getElementById("save_button");
+    let videoPlayer = document.getElementById("video_player");
+    let chooserList = document.getElementById("choser_list");
+    let cover = document.getElementById("poster");
+    let title = document.getElementById("title");
+    let description = document.getElementById("description");
+    let director = document.getElementById("director");
+    let genre = document.getElementById("genre");
+    let studio = document.getElementById("studio");
+    let releaseDate = document.getElementById("release_date");
+    let episodeAmount = document.getElementById("episode_amount");
+
 
     getInfo();
     function getInfo() {
-        var currentUrl = window.location.href;
+        const currentUrl = window.location.href;
         $.get(currentUrl+"/get", function (data) {
             
-            title.innerText = data.name;
-            description.innerText = data.description;
+            title.value = data.name;
+            description.value = data.description;
             cover.src = data.cover;
             releaseDate.value = data.release_date;
             studio.value = data.studio;
             director.value = data.director;
-            var genresString = "";
+            let genresString = "";
             data.genres.forEach(genreString => {
                 genresString += genreString + " ";
             });
             genre.value = genresString;
 
-            var episodes = data.episodes;
+            let episodes = data.episodes;
             changeEpisode(episodes[0].url);
             chooserList.innerHTML = null;
             episodes.forEach(episode => {
-                var liElement = document.createElement("li");
-                var buttonElement = document.createElement("button");
+                let liElement = document.createElement("li");
+                let buttonElement = document.createElement("button");
                 buttonElement.className = "choser_button";
                 buttonElement.innerText = episode.number;
                 buttonElement.onclick = () => {changeEpisode(episode.url)};
@@ -128,32 +129,18 @@
         videoPlayer.src = url;
     }
 
-
-
-
-
-    var buttonGo = document.getElementById("go");
-    var fileChooser = document.getElementById("fileChooser");
-    var genresField = document.getElementById("genres");
-    var titleField = document.getElementById("title");
-    var releaseField = document.getElementById("release");
-    var directorField = document.getElementById("director");
-    var descriptionField = document.getElementById("description");
-    var studioField = document.getElementById("studio");
-    var codeField = document.getElementById("code");
-
-    buttonGo.onclick = () => {editSeries()};
+    saveButton.onclick = () => {editSeries()};
     function editSeries() {
         /*dataS.append("cover", fileChooser.files[0]);*/
 
         const dataS = {
-            "title": titleField.value,
-            "description": descriptionField.value,
-            "genres": genresField.value.split(" "),
-            "releaseDate": releaseField.value,
-            "director": directorField.value,
-            "studio": studioField.value,
-            "code": codeField.value
+            "title": title.value,
+            "description": description.value,
+            "genres": genre.value.split(" "),
+            "releaseDate": releaseDate.value,
+            "director": director.value,
+            "studio": studio.value,
+            "code": "1337"//codeField.value
         }
 
         const jsonData = JSON.stringify(dataS);
@@ -171,9 +158,10 @@
             error: function (data) {
             },
         });*/
+        const currentUrl = window.location.href;
         $.ajax({
-            url: "/series/upload",
-            type: "POST",
+            url: currentUrl,
+            type: "PUT",
             contentType: 'application/json',
             dataType: 'json',
             data: jsonData,
@@ -185,8 +173,8 @@
             }
         });
 
-        var form = fileChooser.files[0];
-        var data = new FormData();
+        /*let form = fileChooser.files[0];
+        let data = new FormData();
         data.append("file", form);
 
         $.ajax({
@@ -202,7 +190,7 @@
             },
             error: function (e) {
             }
-        });
+        });*/
     }
 </script>
 </body>

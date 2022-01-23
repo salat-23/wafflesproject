@@ -68,6 +68,11 @@ public class SeriesController {
         return modelAndView;
     }
 
+    @PutMapping("/admin/qwerty/edit/{name}")
+    public String updateSeries(@PathVariable String name, @RequestBody UploadSeriesDTO newSeries) {
+        return seriesService.updateSeries(name, newSeries);
+    }
+
 
     @GetMapping({"/series/{name}/get", "/admin/qwerty/edit/{name}/get"})
     public SeriesDTO getEpisodes(@PathVariable String name) {

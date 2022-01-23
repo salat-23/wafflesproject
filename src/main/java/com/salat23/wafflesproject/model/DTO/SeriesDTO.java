@@ -17,7 +17,7 @@ public class SeriesDTO {
     private String director;
     private List<String> genres;
     @JsonProperty(value = "release_date")
-    private LocalDate releaseDate;
+    private String releaseDate;
 
     private List<Episode> episodes;
 

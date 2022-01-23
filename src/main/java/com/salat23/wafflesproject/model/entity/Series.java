@@ -22,7 +22,7 @@ public class Series {
     private LocalDate latestUpdate;
 
     @Column(name = "release_date")
-    private LocalDate releaseDate;
+    private String releaseDate;
 
     private String director;
 

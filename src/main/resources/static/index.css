@@ -362,7 +362,35 @@ footer {
     height: 50px;
 }
 
-.meta_info input {
+.title_discription_container input {
     color: var(--main-font-color);
-    font-size: 24px;
+    font-size: 2em;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+.meta_info input {
+    max-width: 190px;
+    color: var(--main-font-color);
+    font-size: 1em;
+}
+
+.description textarea {
+    border: 0;
+    width: 490px;
+    height: available;
+    resize: none;
+    color: var(--main-font-color);
+    background: var(--secondary-background-color);
+}
+
+.save_button {
+    background: var(--main-style-color);
+    color: var(--main-font-color);
+    width: 100px;
+    height: 30px;
+}
+
+.save_button:hover {
+    background: var(--secondary-style-color);
 }

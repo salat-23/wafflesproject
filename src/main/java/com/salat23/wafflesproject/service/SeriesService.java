@@ -44,20 +44,17 @@ public class SeriesService {
 
 
     public Page<Series> getSeries(int page) {
-        log.info("started getSeries");
         Pageable sortedByLatest = PageRequest.of(page, 3, Sort.by("latestUpdate").descending());
-        log.info("finished getSeries");
         return seriesRepository.findAll(sortedByLatest);
     }
 
     public Page<Series> getSeriesByGenres(int page, String genresRequest) {
         Pageable sortedByLatest = PageRequest.of(page, 8, Sort.by("latestUpdate").descending());
         /*List<Genre> genres = genresRepository.findAllByGenreTitleIn(genresRequest);*/
-        return seriesRepository.findAllByNameContaining(genresRequest,sortedByLatest);
+        return seriesRepository.findAllByNameContaining(genresRequest, sortedByLatest);
     }
 
     public Page<Series> fetchSeries(Integer page, Integer pageSize, String sortingField, String sortingDirection) {
-        log.info(String.format("%s, %s, %s, %s", page, pageSize, sortingField, sortingDirection));
         Sort sort = Sort.by(Sort.Direction.valueOf(sortingDirection), sortingField);
         Pageable pageable = PageRequest.of(page, pageSize, sort);
         return seriesRepository.findAll(pageable);
@@ -77,14 +74,34 @@ public class SeriesService {
             genre.setSeries(series);
             genresRepository.save(genre);
         }
-        LocalDate releaseDate = LocalDate.of(Integer.parseInt(request.getReleaseDate()), 1, 1);
-        series.setReleaseDate(releaseDate);
+        series.setReleaseDate(request.getReleaseDate());
         series.setStudio(request.getStudio());
-        series.setLatestUpdate(LocalDate.now());
         series.setLatestUpdate(LocalDate.now());
         seriesRepository.save(series);
         return "OK";
     }
+
+    public String updateSeries(String name, UploadSeriesDTO newSeries) {
+        Series series = seriesRepository.findByName(name).orElseThrow(
+                () -> new EntityNotFoundException(String.format("Series %s not found", name)));
+        genresRepository.deleteAllBySeries_Name(name);
+        for (String newGenre : newSeries.getGenres()) {
+            Genre genre = new Genre();
+            genre.setGenreTitle(newGenre);
+            genre.setSeries(series);
+            genresRepository.save(genre);
+        }
+        series.setName(newSeries.getTitle());
+        series.setDescription(newSeries.getDescription());
+        series.setDirector(newSeries.getDirector());
+        series.setStudio(newSeries.getStudio());
+        series.setReleaseDate(newSeries.getReleaseDate());
+        series.setLatestUpdate(LocalDate.now());
+
+        seriesRepository.save(series);
+        return "Ok";
+    }
+
 
     @Transactional
     public String uploadSeriesCover(MultipartFile file, String name) {
@@ -112,7 +129,7 @@ public class SeriesService {
         Optional<Series> optSeries = seriesRepository.findByName(name);
         if (optSeries.isEmpty()) {
             System.out.println(name);
-            throw  new EntityNotFoundException();
+            throw new EntityNotFoundException();
         }
         Series series = optSeries.get();
         seriesDTO.setName(series.getName());

@@ -9,5 +9,6 @@ import java.util.List;
 public interface GenresRepository extends JpaRepository<Genre, Long> {
 
     List<Genre> findAllBySeries_Name(String seriesName);
+    void deleteAllBySeries_Name(String seriesName);
 
 }
