@@ -54,7 +54,14 @@ public class SeriesController {
         return modelAndView;
     }
 
-    @RequestMapping("/admin/qwerty/upload_series")
+    @RequestMapping("/about")
+    public ModelAndView about() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("about");
+        return modelAndView;
+    }
+
+        @RequestMapping("/admin/qwerty/upload_series")
     public ModelAndView getAdminUploadSeries() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("uploadSeries");
