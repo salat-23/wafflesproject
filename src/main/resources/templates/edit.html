@@ -60,6 +60,16 @@
                     <button id="save_button" class="save_button" type="button">Save changes</button>
                 </div>
             </div>
+            <div id="popup_box" class="popup_box">
+                <div>
+                    <label for="newEpisodeName">Title: </label><input id="newEpisodeName"/>
+                </div>
+                <div>
+                    <label for="newEpisodeUrl">URL: </label><input id="newEpisodeUrl"/>
+                </div>
+
+                <button id="submitEpisodeButton" type="button">Submit</button>
+            </div>
             <div class="video_player">
                 <iframe id="video_player" src=""
                 frameborder="0" scrolling="no" allowfullscreen></iframe>
@@ -76,6 +86,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     var saveButton = document.getElementById("save_button");
+    var submitButton = document.getElementById("submitEpisodeButton");
     let videoPlayer = document.getElementById("video_player");
     let chooserList = document.getElementById("choser_list");
     let cover = document.getElementById("poster");
@@ -119,14 +130,56 @@
                 chooserList.append(liElement);
             })
 
+            //Add last button for new series
+            let liElement = document.createElement("li");
+            let buttonElement = document.createElement("button");
+            buttonElement.className = "choser_button";
+            buttonElement.innerText = "+";
+            buttonElement.onclick = () => {openNewEpisode()};
+            liElement.append(buttonElement);
+            liElement.onclick = () => {openNewEpisode()};
+            chooserList.append(liElement)
+
+
+
             episodeAmount.innerText = "Количество серий: " + episodes.length;
-
-
         });
+    }
+
+    function openNewEpisode() {
+        let popup_box = document.getElementById("popup_box");
+        popup_box.style.visibility = "visible";
     }
 
     function changeEpisode(url) {
         videoPlayer.src = url;
+    }
+
+    submitButton.onclick = () => {
+        const currentUrl = window.location.href;
+        let newEpisodeNameInput = document.getElementById("newEpisodeName");
+        let newEpisodeUrlInput = document.getElementById("newEpisodeUrl");
+        if (newEpisodeNameInput.value !== null && newEpisodeUrlInput.value !== null) {
+            let jsonData = JSON.stringify({
+                "title": newEpisodeNameInput.value,
+                "url": newEpisodeUrlInput.value
+            });
+            $.ajax({
+                url: currentUrl + "/upload",
+                type: "POST",
+                contentType: 'application/json',
+                dataType: 'json',
+                data: jsonData,
+                success: function (response) {
+                    console.log(response)
+                },
+                error: function (jqXHR, textStatus, errorMessage) {
+                    console.log(errorMessage);
+                }
+            });
+        }
+        let popup_box = document.getElementById("popup_box");
+        popup_box.style.visibility = "hidden";
     }
 
     saveButton.onclick = () => {editSeries()};

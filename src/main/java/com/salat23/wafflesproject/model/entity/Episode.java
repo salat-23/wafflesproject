@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Table(name = "episodes")
 public class Episode {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @ManyToOne
     private Series series;

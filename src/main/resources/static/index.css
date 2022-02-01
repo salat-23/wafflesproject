@@ -394,3 +394,30 @@ footer {
 .save_button:hover {
     background: var(--secondary-style-color);
 }
+
+.popup_box {
+    display: flex;
+    flex-direction: column;
+    visibility: hidden;
+    align-content: center;
+    font-size: 2em;
+    color: var(--main-font-color);
+    text-align: center;
+    padding: 15px;
+    margin: 15px;
+    border: 3px solid var(--main-style-color);
+    border-radius: 10px;
+}
+
+.popup_box input, .popup_box button, .popup_box label {
+    color: var(--main-font-color);
+    font-size: 1em;
+}
+
+.popup_box button {
+    background: var(--main-style-color);
+}
+
+.popup_box button:hover {
+    background: var(--secondary-style-color);
+}

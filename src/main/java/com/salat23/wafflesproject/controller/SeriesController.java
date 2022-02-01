@@ -80,6 +80,10 @@ public class SeriesController {
         return seriesService.updateSeries(name, newSeries);
     }
 
+    @PostMapping("/admin/qwerty/edit/{name}/upload")
+    public void uploadEpisode(@RequestBody NewEpisodeDTO episode, @PathVariable String name) {
+        seriesService.uploadEpisode(episode, name);
+    }
 
     @GetMapping({"/series/{name}/get", "/admin/qwerty/edit/{name}/get"})
     public SeriesDTO getEpisodes(@PathVariable String name) {

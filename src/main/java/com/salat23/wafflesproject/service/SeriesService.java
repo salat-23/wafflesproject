@@ -2,6 +2,8 @@ package com.salat23.wafflesproject.service;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import com.salat23.wafflesproject.model.DTO.EpisodeDTO;
+import com.salat23.wafflesproject.model.DTO.NewEpisodeDTO;
 import com.salat23.wafflesproject.model.DTO.SeriesDTO;
 import com.salat23.wafflesproject.model.DTO.UploadSeriesDTO;
 import com.salat23.wafflesproject.model.entity.Episode;
@@ -79,6 +81,17 @@ public class SeriesService {
         series.setLatestUpdate(LocalDate.now());
         seriesRepository.save(series);
         return "OK";
+    }
+
+    public void uploadEpisode(NewEpisodeDTO newEpisode, String name) {
+        Series series = seriesRepository.findByName(name).orElseThrow(
+                () -> new EntityNotFoundException(String.format("Series %s not found", name)));
+        Episode episode = new Episode();
+        episode.setSeries(series);
+        episode.setTitle(newEpisode.getTitle());
+        episode.setUrl(newEpisode.getUrl());
+        episode.setNumber(episodeRepository.findAllBySeries_Name(name).size() + 1);
+        episodeRepository.save(episode);
     }
 
     public String updateSeries(String name, UploadSeriesDTO newSeries) {
