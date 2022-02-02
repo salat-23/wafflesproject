@@ -103,7 +103,7 @@
             genre.value = genresString;
 
             let episodes = data.episodes;
-            changeEpisode(episodes[0].url);
+
             chooserList.innerHTML = null;
             episodes.forEach(episode => {
                 let liElement = document.createElement("li");
@@ -115,7 +115,7 @@
                 liElement.onclick = () => {changeEpisode(episode.url)};
                 chooserList.append(liElement);
             })
-
+            if (episodes.length > 0) changeEpisode(episodes[0].url);
             //Add last button for new series
             let liElement = document.createElement("li");
             let buttonElement = document.createElement("button");

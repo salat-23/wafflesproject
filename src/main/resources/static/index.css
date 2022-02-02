@@ -194,6 +194,7 @@ main {
 }
 
 .poster {
+    max-width: 200px;
     max-height: 500px;
     margin-right: 10px;
 }
