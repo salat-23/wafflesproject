@@ -70,16 +70,16 @@ public class SeriesService {
 
         series.setDescription(request.getDescription());
         series.setDirector(request.getDirector());
+        series.setReleaseDate(request.getReleaseDate());
+        series.setStudio(request.getStudio());
+        series.setLatestUpdate(LocalDate.now());
+        seriesRepository.save(series);
         for (String newGenre : request.getGenres()) {
             Genre genre = new Genre();
             genre.setGenreTitle(newGenre);
             genre.setSeries(series);
             genresRepository.save(genre);
         }
-        series.setReleaseDate(request.getReleaseDate());
-        series.setStudio(request.getStudio());
-        series.setLatestUpdate(LocalDate.now());
-        seriesRepository.save(series);
         return "OK";
     }
 
