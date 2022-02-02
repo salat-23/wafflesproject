@@ -72,6 +72,7 @@ public class SeriesService {
         series.setDirector(request.getDirector());
         series.setReleaseDate(request.getReleaseDate());
         series.setStudio(request.getStudio());
+        series.setEpisodeCount(0);
         series.setLatestUpdate(LocalDate.now());
         seriesRepository.save(series);
         for (String newGenre : request.getGenres()) {
