@@ -4,6 +4,8 @@ spring:
     driver-class-name: org.postgresql.Driver
     username: postgres
     password: postgres
+  mvc:
+    static-path-pattern: /resource/**
 
   liquibase:
     drop-first: true

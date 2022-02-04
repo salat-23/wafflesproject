@@ -422,3 +422,21 @@ footer {
 .popup_box button:hover {
     background: var(--secondary-style-color);
 }
+
+.about_info {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    background: var(--secondary-background-color);
+    border-radius: 10px;
+    padding: 30px;
+}
+
+.about_info p {
+    color: var(--main-font-color);
+    font-size: 40px;
+}
+
+.about_info a {
+    color: var(--main-style-color);
+}
