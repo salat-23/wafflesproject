@@ -8,7 +8,7 @@ spring:
     static-path-pattern: /resource/**
 
   liquibase:
-    drop-first: true
+    drop-first: false
     change-log: classpath:db/changelog/db.changelog-master.xml
     enabled: true
     default-schema: public
