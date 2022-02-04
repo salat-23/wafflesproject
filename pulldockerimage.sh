@@ -1,4 +1,4 @@
-git pull https://salat-23:"${GITHUB_TOKEN}"@https://github.com/salat-23/wafflesproject.git
+git pull https://salat-23:"${GITHUB_TOKEN}"@github.com/salat-23/wafflesproject.git
 
 mvn clean
 mvn package
