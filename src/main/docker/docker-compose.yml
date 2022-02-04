@@ -19,6 +19,7 @@ services:
       - cloudinary_api_key='589264481424898'
     networks:
       - waffles
+      - externalnetwork
   db:
     image: 'postgres:13.1-alpine'
     container_name: db
@@ -32,4 +33,7 @@ services:
       - waffles
 networks:
   waffles:
+    internal: true
     driver: bridge
+  externalnetwork:
+    internal: false
