@@ -9,4 +9,4 @@ cd src/main/docker
 
 docker-compose build
 docker-compose pull
-docker-compose up
+docker-compose up -d
