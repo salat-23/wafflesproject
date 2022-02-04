@@ -4,21 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../index.css">
     <title>Upload</title>
 </head>
 <body>
+<div class="inputs_container">
     <input id="title" type="text" placeholder="Название тайтла (Точь в точь)">
     <input id="genres" type="text" placeholder="Жанры (через пробел, все с маленькой буквы)">
     <input id="release" type="text" placeholder="год выхода (например: 2016)">
     <input id="director" type="text" placeholder="Режисер">
     <input id="studio" type="text" placeholder="Студия">
-    <input id="description" type="text" placeholder="Описание">
+    <textarea id="description" class="big_text" type="text" placeholder="Описание"></textarea>
     <input id="code" type="password" placeholder="Пароль">
-
     <!--<input type="text" placeholder="url обложки (если выложено на другом хостинге)">-->
     <input id="fileChooser" type="file" placeholder="Обложка (не загружайте если указали url)">
-    <input type="checkbox">
     <button id="go">ОКЕЙ ЛЕТСГОУ</button>
+
+</div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         var buttonGo = document.getElementById("go");
