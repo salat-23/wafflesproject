@@ -14,16 +14,17 @@ services:
       - "8080:8080"
     environment:
       - CONNECTION_STRING=jdbc:postgresql://db:5432/postgres
-      - cloudinary_api_name=salat23
-      - cloudinary_api_secret=UPmhbfKuSwyyG3XnKGm7ACrRUNg
-      - cloudinary_api_key=589264481424898
+      - cloudinary_api_name=${CLOUD_API_NAME:salat23}
+      - cloudinary_api_secret=${CLOUD_API_SECRET:UPmhbfKuSwyyG3XnKGm7ACrRUNg}
+      - cloudinary_api_key=${CLOUD_API_KEY:589264481424898}
     networks:
       - waffles
       - externalnetwork
   db:
     image: 'postgres:13.1-alpine'
     container_name: db
-
+    volumes:
+      - postgres_volume:/var/lib/postgres
     ports:
       - "5432:5432"
     environment:
@@ -37,3 +38,5 @@ networks:
     driver: bridge
   externalnetwork:
     internal: false
+volumes:
+  postgres_volume: {}
