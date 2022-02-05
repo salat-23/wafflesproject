@@ -1,13 +1,27 @@
 @media screen and (max-width: 1101px) {
+
+    html, body {
+        width: 1101px;
+    }
+
     .videos__inner{
         grid-template-columns: repeat(3, 230px)
     }
     .container{
         width: 770px;
     }
+
+    .video_player iframe {
+        height: 414px;
+        width: 736px;
+    }
 }
 
 @media screen and (max-width: 801px) {
+    html, body {
+        width: 801px;
+    }
+
     .videos__inner{
         grid-template-columns: repeat(2, 230px)
     }
@@ -21,9 +35,56 @@
     .header__logo{
         left: 50px;
     }
+
+    .video_player iframe {
+        height: 269px;
+        width: 478px;
+    }
+
+    .info {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .title_discription_container {
+        margin-top: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .description_meta_container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .about_info {
+        width: 450px;
+    }
+
+    .about_info p {
+        font-size: 1.5em;
+        text-align: center;
+    }
+
+    .poster {
+        width: 400px;
+        max-height: 1000px;
+    }
+
+    .description {
+        border-right: 0;
+        border-bottom: 6px solid var(--main-style-color);;
+    }
+
 }
 
 @media screen and (max-width: 551px) {
+
+    html, body {
+        width: 551px;
+    }
+
     header{
         display: flex;
         flex-direction: column;
@@ -49,4 +110,67 @@
     .container, form{
         width: 285px;
     }
+
+    .about_info {
+        width: 285px;
+    }
+
+    .about_info p {
+        font-size: 1em;
+        text-align: center;
+    }
+
+    .info {
+        width: 498px;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .search {
+        align-items: center;
+        width: 300px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+
+    html, body {
+        width: 388px;
+    }
+
+    header{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .header__logo{
+        position: relative;
+        transform: translate(0%, 0%);
+        left: 0px;
+    }
+    nav ul{
+        flex-direction: column;
+    }
+    nav a{
+        padding: 10px 95px;
+        font-size: 16px;
+    }
+    .videos__inner{
+        grid-template-columns: repeat(1, 250px);
+        justify-content: center;
+    }
+    .container, form{
+        width: 230px;
+    }
+
+    .search {
+        width: 200px;
+    }
+
+
 }

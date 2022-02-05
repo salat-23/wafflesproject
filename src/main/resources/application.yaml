@@ -6,6 +6,11 @@ spring:
     password: postgres
   mvc:
     static-path-pattern: /resource/**
+  web:
+    resources:
+      static-locations:
+        - file:src/main/resources/static/
+        - classpath:/static/
 
   liquibase:
     drop-first: false
