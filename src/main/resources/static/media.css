@@ -136,10 +136,10 @@
     }
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 388px) {
 
     html, body {
-        width: 388px;
+        width: 400  px;
     }
 
     header{
@@ -165,11 +165,21 @@
         justify-content: center;
     }
     .container, form{
-        width: 230px;
+        width: 360px;
     }
 
     .search {
         width: 200px;
+    }
+
+    .title_discription_container {
+        width: 350px;
+    }
+
+
+    .video_player iframe {
+        height: 196px;
+        width: 350px;
     }
 
 
