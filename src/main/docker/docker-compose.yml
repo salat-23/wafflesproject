@@ -11,7 +11,8 @@ services:
     links:
       - "db:db"
     ports:
-      - "443:8080"
+      - "443:8443"
+      - "80:8443"
     environment:
       - CONNECTION_STRING=jdbc:postgresql://db:5432/postgres
       - cloudinary_api_name=salat23

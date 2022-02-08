@@ -33,3 +33,4 @@ server:
     key-store-type: pkcs12
     key-alias: springboot
     key-password: misikon
+  port: 8443
