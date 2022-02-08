@@ -28,7 +28,7 @@ spring:
 
 server:
   ssl:
-    key-store: ./springboot.p12
+    key-store: src/main/resources/springboot.p12
     key-store-password: misikon
     key-store-type: pkcs12
     key-alias: springboot
