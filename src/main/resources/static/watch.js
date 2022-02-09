@@ -14,6 +14,7 @@ function getInfo() {
     var currentUrl = window.location.href;
     $.get(currentUrl+"/get", function (data) {
 
+        document.title = data.name;
         title.innerText = data.name;
         description.innerText = data.description;
         cover.src = data.cover;
